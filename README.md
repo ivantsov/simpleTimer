@@ -1,0 +1,4 @@
+simpleTimer
+===========
+
+simpler jquery timer

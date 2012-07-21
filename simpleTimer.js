@@ -43,7 +43,7 @@
 			if(diff <= 0){
 				clearInterval(t);
 				$("#timer").html("00:00:00");
-				alert("Время вышло!");
+				alert("Time is up!");
 				return false;
 			};
 								

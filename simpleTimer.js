@@ -7,7 +7,7 @@
 	
 	var date = new Date();	
 	var defaults = {
-		date   : date.getDate() + "," + date.getHours() + "," + date.getMinutes() + "," + date.getSeconds(),
+		date   : date.getDate() + "/" + date.getHours() + "/" + date.getMinutes() + "/" + date.getSeconds(),
 		format : 'long'
 	};
 	var options;
@@ -15,7 +15,7 @@
 	$.fn.simpleTimer = function(params){
 		
 		options = $.extend({}, defaults, params);
-		var event_date = options.date.split(",");
+		var event_date = options.date.split("/");
 		
 		var t_event = {
 			days  : parseInt(event_date[0]), 	

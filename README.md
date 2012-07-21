@@ -1,4 +1,4 @@
 simpleTimer
 ===========
 
-simpler jquery timer
+simpler jquery timer test

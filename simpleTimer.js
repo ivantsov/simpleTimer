@@ -7,7 +7,8 @@
 	
 	var date = new Date();	
 	var defaults = {
-		date : date.getDate() + "," + date.getHours() + "," + date.getMinutes() + "," + date.getSeconds()
+		date   : date.getDate() + "," + date.getHours() + "," + date.getMinutes() + "," + date.getSeconds(),
+		format : 'long'
 	};
 	var options;
 	
@@ -17,10 +18,10 @@
 		var event_date = options.date.split(",");
 		
 		var t_event = {
-			day  : parseInt(event_date[0]), 	
-			hour : parseInt(event_date[1]),	
-			min  : parseInt(event_date[2]),	
-			sec  : parseInt(event_date[3])
+			days  : parseInt(event_date[0]), 	
+			hours : parseInt(event_date[1]),	
+			min   : parseInt(event_date[2]),	
+			sec   : parseInt(event_date[3])
 		};
 		
 		var t = setInterval(timer, 1000);					
@@ -30,14 +31,14 @@
 			date = new Date();
 									
 			var now = {
-				day  : date.getDate(),
-				hour : date.getHours(),
-				min  : date.getMinutes(),
-				sec  : date.getSeconds()
+				days  : date.getDate(),
+				hours : date.getHours(),
+				min   : date.getMinutes(),
+				sec   : date.getSeconds()
 			};
 											
-			t_event.total = t_event.day * 24 * 60 * 60 + t_event.hour * 60 * 60 + t_event.min * 60 + t_event.sec;			
-			now.total =  now.day * 24 * 60 * 60 + now.hour * 60 * 60 + now.min * 60 + now.sec;			
+			t_event.total = t_event.days * 24 * 60 * 60 + t_event.hours * 60 * 60 + t_event.min * 60 + t_event.sec;			
+			now.total =  now.days * 24 * 60 * 60 + now.hours * 60 * 60 + now.min * 60 + now.sec;			
 			var diff = t_event.total - now.total;
 						
 			if(diff <= 0){
@@ -46,15 +47,25 @@
 				alert("Time is up!");
 				return false;
 			};
-								
-			var hour = Math.floor(diff / (60 * 60));
-			var min  = Math.floor((diff - hour * 60 * 60) / 60);
+						
+			if(options.format == "long"){
+				var days  = Math.floor(diff / (24 * 60 * 60));
+				var hours = Math.floor((diff - days * 24 * 60 * 60) / (60 * 60));
+				var min   = Math.floor((diff - days * 24 * 60 * 60 - hours * 60 * 60) / 60);
+			}
+			else{
+				var hours = Math.floor(diff / (60 * 60));			
+				var min   = Math.floor((diff - hours * 60 * 60) / 60);
+			};
 			var sec  = diff % 60;
-			if(hour < 10) hour = "0" + hour;
+			if(hours < 10) hour = "0" + hour;
 			if(min < 10) min = "0" + min;
 			if(sec < 10) sec = "0" + sec;												
 					
-			$("#timer").html(hour + ":" + min + ":" + sec);					
+			$("#days").html(days);
+			$("#hours").html(hours);
+			$("#min").html(min);
+			$("#sec").html(sec);					
 		};
 		
 		return this;

@@ -33,17 +33,16 @@
 				font-size: 256px;
 				color: #fff;
 			}
-			
-			span {
-				font-size: 200px;
-			}
 		</style>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 		<script src="simpleTimer.js"></script>
 		<script>
 			$(document).ready(function(){
 				/* date it's: DAY, HOUR, MIN, SEC of event */
-				$().simpleTimer({ date : '21,9,59,0' });
+				$().simpleTimer({
+					date   : '23,9,59,0',
+					format : 'long'
+				});
 			});
 		</script>
 	</head>
@@ -51,7 +50,9 @@
 		<section>
 			<div class="center">
 				<h1>Time left:</h1>
-				<h2 id="timer">00:00:00</h2>
+				<h2 id="timer">
+					<span id="days">00</span>:<span id="hours">00</span>:<span id="min">00</span>:<span id="sec">00</span>
+				</h2>
 			</div>			
 		</section>
 	</body>

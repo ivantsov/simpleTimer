@@ -20,7 +20,7 @@
 			}
 			
 			.center {
-				padding: 200px 0;
+				padding-top: 100px;
 				text-align: center;
 			}
 
@@ -30,7 +30,7 @@
 			}
 			
 			h2 {
-				font-size: 256px;
+				font-size: 200px;
 				color: #fff;
 			}
 		</style>
@@ -39,9 +39,25 @@
 		<script>
 			$(document).ready(function(){
 				/* date it's: DAY, HOUR, MIN, SEC of event */
-				$().simpleTimer({
-					date   : '24/21/25/30',
+				$("#timer1").simpleTimer({
+					date   : '25/21/21/21',
+					format : 'day',
+					action : function(){
+						alert("Example");
+					}
+				});
+				
+				$("#timer2").simpleTimer({
+					date   : '24/23/25/30',
 					format : 'hour',
+					action : function(){
+						alert("Example");
+					}
+				});
+				
+				$("#timer3").simpleTimer({
+					date   : '23/9/25/20',
+					format : 'min',
 					action : function(){
 						alert("Example");
 					}
@@ -53,8 +69,9 @@
 		<section>
 			<div class="center">
 				<h1>Time left:</h1>
-				<h2 id="timer">
-				</h2>
+				<h2 id="timer1"></h2>
+				<h2 id="timer2"></h2>
+				<h2 id="timer3"></h2>
 			</div>			
 		</section>
 	</body>

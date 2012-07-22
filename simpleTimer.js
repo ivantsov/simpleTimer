@@ -8,7 +8,10 @@
 	var date = new Date();	
 	var defaults = {
 		date   : date.getDate() + "/" + date.getHours() + "/" + date.getMinutes() + "/" + date.getSeconds(),
-		format : 'long'
+		format : 'long',
+		action : function(){
+			alert("Time is up!");
+		}
 	};
 	var options;
 	
@@ -43,8 +46,11 @@
 						
 			if(diff <= 0){
 				clearInterval(t);
-				$("#timer").html("00:00:00");
-				alert("Time is up!");
+				$("#days").html("0");
+				$("#hours").html("00");
+				$("#min").html("00");
+				$("#sec").html("00");	
+				options.action();
 				return false;
 			};
 						
@@ -58,7 +64,7 @@
 				var min   = Math.floor((diff - hours * 60 * 60) / 60);
 			};
 			var sec  = diff % 60;
-			if(hours < 10) hour = "0" + hour;
+			if(hours < 10) hours = "0" + hours;
 			if(min < 10) min = "0" + min;
 			if(sec < 10) sec = "0" + sec;												
 					

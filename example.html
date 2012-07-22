@@ -40,8 +40,11 @@
 			$(document).ready(function(){
 				/* date it's: DAY, HOUR, MIN, SEC of event */
 				$().simpleTimer({
-					date   : '23/9/59/0',
-					format : 'long'
+					date   : '22/15/48/0',
+					format : 'long',
+					action : function(){
+						alert("Example");
+					}
 				});
 			});
 		</script>
@@ -51,7 +54,7 @@
 			<div class="center">
 				<h1>Time left:</h1>
 				<h2 id="timer">
-					<span id="days">00</span>:<span id="hours">00</span>:<span id="min">00</span>:<span id="sec">00</span>
+					<span id="days">0</span>:<span id="hours">00</span>:<span id="min">00</span>:<span id="sec">00</span>
 				</h2>
 			</div>			
 		</section>

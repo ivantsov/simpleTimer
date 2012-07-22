@@ -8,7 +8,7 @@
 	var date = new Date();	
 	var defaults = {
 		date   : date.getDate() + "/" + date.getHours() + "/" + date.getMinutes() + "/" + date.getSeconds(),
-		format : 'long',
+		format : 'day',
 		action : function(){
 			alert("Time is up!");
 		}
@@ -25,6 +25,12 @@
 			hours : parseInt(event_date[1]),	
 			min   : parseInt(event_date[2]),	
 			sec   : parseInt(event_date[3])
+		};
+		
+		switch(options.format){
+			case("day")  : $("#timer").append("<span id='days'>0</span>:<span id='hours'>00</span>:<span id='min'>00</span>:<span id='sec'>00</span>"); break;
+			case("hour") : $("#timer").append("<span id='hours'>00</span>:<span id='min'>00</span>:<span id='sec'>00</span>"); break;
+			case("min")  : $("#timer").append("<span id='min'>00</span>:<span id='sec'>00</span>"); break;
 		};
 		
 		var t = setInterval(timer, 1000);					
@@ -46,23 +52,26 @@
 						
 			if(diff <= 0){
 				clearInterval(t);
-				$("#days").html("0");
+				$("#days").html("00");
 				$("#hours").html("00");
 				$("#min").html("00");
 				$("#sec").html("00");	
 				options.action();
 				return false;
 			};
-						
-			if(options.format == "long"){
+					
+			if(options.format == "day"){
 				var days  = Math.floor(diff / (24 * 60 * 60));
 				var hours = Math.floor((diff - days * 24 * 60 * 60) / (60 * 60));
 				var min   = Math.floor((diff - days * 24 * 60 * 60 - hours * 60 * 60) / 60);
 			}
-			else{
+			else if(options.format == "hour"){
 				var hours = Math.floor(diff / (60 * 60));			
 				var min   = Math.floor((diff - hours * 60 * 60) / 60);
-			};
+			}
+			else{
+				var min = Math.floor(diff / 60);
+			}			
 			var sec  = diff % 60;
 			if(hours < 10) hours = "0" + hours;
 			if(min < 10) min = "0" + min;
